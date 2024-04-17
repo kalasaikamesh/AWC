@@ -19,5 +19,19 @@ def stop_mon(interface):
   os.system(f"airmon-ng stop {interface}mon")
   print(f"Changed to {interface}")
 
+
 def scan(interface):
-  pass
+  for file_name in os.listdir():
+
+
+    if ".csv" in file_name:
+        print("There shouldn't be any .csv files in your directory. We found .csv files in your directory and will move them to the backup directory.")
+
+        directory = os.getcwd()
+        try:
+            os.mkdir(directory + "/backup/")
+        except:
+            print("Backup folder exists.")
+        timestamp = datetime.now()
+        shutil.move(file_name, directory + "/backup/" + str(timestamp) + "-" + file_name)
+      
